@@ -4,6 +4,10 @@ export interface VideoSize {
   autoScale?: boolean;
 }
 
+export enum VideoAlignment {
+  CENTER = "center"
+}
+
 export interface VideoPosition {
   x: number;
   y: number;
@@ -12,7 +16,7 @@ export interface VideoPosition {
 export interface VideoSource {
   videoElement: HTMLVideoElement;
   size: VideoSize;
-  position: VideoPosition;
+  position: VideoPosition | VideoAlignment;
 }
 
 export interface VideoOutputOptions {

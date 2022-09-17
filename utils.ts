@@ -1,4 +1,9 @@
-import { VideoOutputOptions, VideoSize, VideoSource } from "./types";
+import {
+  VideoOutputOptions,
+  VideoPosition,
+  VideoSize,
+  VideoSource
+} from "./types";
 
 export const getVideoSize = ({
   videoElement,
@@ -37,4 +42,14 @@ export const calculateSize = (
       height: dstSize.width / srcRatio
     };
   }
+};
+
+export const getCenteredPosition = (
+  canvas: HTMLCanvasElement,
+  renderSize: VideoSize
+): VideoPosition => {
+  return {
+    x: (canvas.width - renderSize.width) / 2,
+    y: (canvas.height - renderSize.height) / 2
+  };
 };
