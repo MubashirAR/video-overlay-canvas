@@ -95,3 +95,5 @@ export default class VideoOverlayCanvas {
     this.stopped = true;
   }
 }
+// TODO: Add support for setInterval
+// TODO: Add support for MediaStreams
