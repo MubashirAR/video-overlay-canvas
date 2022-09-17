@@ -1,0 +1,38 @@
+{
+  "name": "video-overlay-canvas",
+  "version": "0.0.1",
+  "description": "Record multiple video streams as overlay",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MubashirAR/video-overlay-canvas.git"
+  },
+  "keywords": [
+    "video",
+    "mediastream",
+    "record",
+    "webrtc",
+    "multistream",
+    "recorder",
+    "video",
+    "overlay",
+    "video",
+    "capture",
+    "canvas",
+    "video",
+    "recorder"
+  ],
+  "author": "Mubashir Reshamwala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MubashirAR/video-overlay-canvas/issues"
+  },
+  "homepage": "https://github.com/MubashirAR/video-overlay-canvas#readme",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
+}
