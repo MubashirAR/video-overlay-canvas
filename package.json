@@ -1,10 +1,10 @@
 {
   "name": "video-overlay-canvas",
   "version": "0.0.1",
-  "description": "Record multiple video streams as overlay",
-  "main": "index.js",
+  "description": "Combine multiple video streams as overlay",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc index",
+    "build": "tsc index --outDir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +24,9 @@
     "capture",
     "canvas",
     "video",
-    "recorder"
+    "recorder",
+    "camera",
+    "screen"
   ],
   "author": "Mubashir Reshamwala",
   "license": "MIT",

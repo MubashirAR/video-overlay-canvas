@@ -9,4 +9,4 @@ This library will allow you to overlay videos (MediaStreams) on top of one anoth
 
 ## Disadvantages
 - Not suitable if your audience is primarily video nerds. Painting on canvas and recording it is not an efficient process and can lead to loss in video quality and framerate (specially under high load).
-- The `requestAnimationFrame()` function does not get called when you are on a different tab in the same browser window. On the flip-side, the `setInterval()` implementation may sometimes lead to choppy videos (particularly during high load) since the frames are not painted at the same time as the screen
+- The `requestAnimationFrame()` function does not get called when your browser tab is not in view. On the flip-side, the `setInterval()` implementation may sometimes lead to choppy videos (particularly during high load) since the frames are not painted at the same time as the screen
