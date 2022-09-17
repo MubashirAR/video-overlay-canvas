@@ -20,17 +20,22 @@ export default class VideoOverlayCanvas {
   private sources: VideoSource[];
   private outputOptions: VideoOutputOptions;
   private stopped: boolean;
+  private fps?: number;
+  private interval?: number;
 
-  constructor({ sources, output }: UserOptions) {
+  constructor({ sources, output, fps }: UserOptions) {
     this.sources = sources;
     this.outputOptions = output || defaultOutputOptions;
     this.canvas = document.createElement("canvas");
     this.context = this.canvas.getContext("2d");
+    this.fps = fps;
     this.stopped = true;
   }
 
   private renderFrame = () => {
     if (this.stopped) {
+      clearTimeout(this.interval);
+      this.stopped = true;
       return;
     }
 
@@ -41,7 +46,11 @@ export default class VideoOverlayCanvas {
     const { canvas, context } = this;
     this.setCanvasSize(canvas);
 
-    requestAnimationFrame(this.renderFrame);
+    if (this.fps) {
+      this.interval = setTimeout(this.renderFrame, 1000 / this.fps);
+    } else {
+      requestAnimationFrame(this.renderFrame);
+    }
 
     this.sources?.forEach((source: VideoSource) => {
       this.attachSource(context, source);

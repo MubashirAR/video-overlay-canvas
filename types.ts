@@ -26,6 +26,7 @@ export interface VideoOutputOptions {
 export interface UserOptions {
   sources: VideoSource[];
   output?: VideoOutputOptions;
+  fps?: number;
 }
 
 export interface Options extends UserOptions {
