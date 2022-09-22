@@ -12,8 +12,7 @@ import {
   getCanvasSize,
   getCenteredPosition,
   getVideoSize
-} from "./utils";
-
+} from './utils';
 export default class VideoOverlayCanvas {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D | null;
@@ -26,8 +25,8 @@ export default class VideoOverlayCanvas {
   constructor({ sources, output, fps }: UserOptions) {
     this.sources = sources;
     this.outputOptions = output || defaultOutputOptions;
-    this.canvas = document.createElement("canvas");
-    this.context = this.canvas.getContext("2d");
+    this.canvas = document.createElement('canvas');
+    this.context = this.canvas.getContext('2d');
     this.fps = fps;
     this.stopped = true;
   }
@@ -51,6 +50,8 @@ export default class VideoOverlayCanvas {
     } else {
       requestAnimationFrame(this.renderFrame);
     }
+
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
     this.sources?.forEach((source: VideoSource) => {
       this.attachSource(context, source);
@@ -84,15 +85,15 @@ export default class VideoOverlayCanvas {
     }
   }
 
-  getCanvas = (): HTMLCanvasElement | undefined => {
-    return this.canvas;
-  };
-
-  setCanvasSize = (canvas: HTMLCanvasElement) => {
+  private setCanvasSize = (canvas: HTMLCanvasElement) => {
     const { height, width } = getCanvasSize(this.outputOptions);
 
     canvas.height = height;
     canvas.width = width;
+  };
+
+  getCanvas = (): HTMLCanvasElement | undefined => {
+    return this.canvas;
   };
 
   start = () => {
@@ -106,3 +107,4 @@ export default class VideoOverlayCanvas {
 }
 // TODO: Add support for setInterval
 // TODO: Add support for MediaStreams
+export { VideoAlignment, VideoPosition, VideoSource };

@@ -1,9 +1,10 @@
 import {
+  VideoAlignment,
   VideoOutputOptions,
   VideoPosition,
   VideoSize,
   VideoSource
-} from "./types";
+} from './types';
 
 export const getVideoSize = ({
   videoElement,
@@ -31,7 +32,7 @@ export const calculateSize = (
   let srcRatio = srcSize.width / srcSize.height;
   let dstRatio = dstSize.width / dstSize.height;
 
-  if (dstRatio > srcRatio) {
+  if (dstRatio < srcRatio) {
     return {
       width: dstSize.height * srcRatio,
       height: dstSize.height
