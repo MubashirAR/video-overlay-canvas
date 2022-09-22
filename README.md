@@ -64,5 +64,5 @@ mediaRecorder.start();
 ```
 
 ## Things to keep in mind
-1. Aspect ratio to be painted should be the same as the original aspect ratio of the video.
+1. Aspect ratio to be painted should be the same as the original aspect ratio of the video. Failing to do this would cripple performance.
 2. If the browser is minimized or is on a different desktop, the framerate drops significantly. You might want to consider using web workers with [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas) instead.
