@@ -1,6 +1,6 @@
 # Video Overlay Canvas
 
-This library will allow you to overlay videos (MediaStreams) on top of one another. This can be useful if you need to provision your user with a video recording feature with a camera + screen recording.
+This library will allow you to overlay videos (MediaStreams) on top of one another using a canvas. This can be useful if you need to provision your user with a video recording feature with a camera + screen recording.
 
 ## Advantages
 - Easy to setup
@@ -13,16 +13,28 @@ This library will allow you to overlay videos (MediaStreams) on top of one anoth
 
 ## Usage
 ### Create a canvas
+
 ```
-const sources = [
+const camera = await navigator.mediaDevices.getUserMedia();
+const screen = await navigator.mediaDevices.getDeviceMedia();
+
+const cvideoElem = document.createElement('video');
+cVideoElem.srcObject = camera;
+cVideoElem.autoplay = true;
+
+const svideoElem = document.createElement('video');
+sVideoElem.srcObject = screen;
+sVideoElem.autoplay = true;
+
+const sources: VideoSource[] = [
   {
-    videoElement: svideoElem,
+    videoElement: sVideoElem,
     size: {
       height: 1600,
       width: 2560,
-      autoScale: true
+      autoScale: true // Fit inside the canvas while maintaining aspect ratio
     },
-    position: 'center'
+    position: VideoAlignment.CENTER // If aspect ratio doesn't match, align the video in the center of the canvas
   },
   {
     videoElement: cvideoElem,
@@ -30,16 +42,27 @@ const sources = [
       height: 240,
       width: 350
     },
-    position: {
+    position: { // You can also provide pixel position
       x: 1350,
       y: 750
     }
   }
 ];
-setVoc(new VideoOverlayCanvas({ sources, fps: 30 }));
+const output = {
+  size: { // Canvas and output video size, defaults to 1080p
+    height: 1080,
+    width: 1920
+  }
+}
+const canvas = new VideoOverlayCanvas({ sources, fps: 30, output });
 ```
 ### Get the canvas and record
 ```
 const canvas = voc.getCanvas();
 const mediaRecorder = new MediaRecorder(canvas.captureStream());
+mediaRecorder.start();
 ```
+
+## Things to keep in mind
+1. Aspect ratio to be painted should be the same as the original aspect ratio of the video.
+2. If the browser is minimized or is on a different desktop, the framerate drops significantly. You might want to consider using web workers with [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas) instead.
