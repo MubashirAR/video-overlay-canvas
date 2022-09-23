@@ -54,12 +54,11 @@ const output = {
     width: 1920
   }
 }
-const canvas = new VideoOverlayCanvas({ sources, fps: 30, output });
+new VideoOverlayCanvas({ sources, fps: 30, output });
 ```
 ### Get the canvas and record
 ```
-const canvas = voc.getCanvas();
-const mediaRecorder = new MediaRecorder(canvas.captureStream());
+const mediaRecorder = new MediaRecorder(voc.getCanvasStream());
 mediaRecorder.start();
 ```
 
