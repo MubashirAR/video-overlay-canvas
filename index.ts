@@ -92,8 +92,8 @@ export default class VideoOverlayCanvas {
     canvas.width = width;
   };
 
-  getCanvas = (): HTMLCanvasElement | undefined => {
-    return this.canvas;
+  getCanvasStream = (): MediaStream => {
+    return this.canvas.captureStream();
   };
 
   start = () => {
