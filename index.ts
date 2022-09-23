@@ -103,8 +103,11 @@ export default class VideoOverlayCanvas {
 
   stop() {
     this.stopped = true;
+    this.canvas
+      ?.captureStream()
+      .getTracks()
+      .forEach((track: MediaStreamTrack) => track.stop());
   }
 }
-// TODO: Add support for setInterval
 // TODO: Add support for MediaStreams
 export { VideoAlignment, VideoPosition, VideoSource };
