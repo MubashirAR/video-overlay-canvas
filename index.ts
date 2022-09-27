@@ -29,6 +29,23 @@ export default class VideoOverlayCanvas {
     this.context = this.canvas.getContext('2d');
     this.fps = fps;
     this.stopped = true;
+
+    this.sources.forEach(source => {
+      source.videoElement.addEventListener(
+        'resize',
+        this.handlers.resize(source)
+      );
+    });
+  }
+
+  private handlers = {
+    resize: (source: VideoSource) => () => {
+      source.size = {
+        ...source.size,
+        height: source.videoElement.videoHeight,
+        width: source.videoElement.videoWidth
+      }
+    }
   }
 
   private renderFrame = () => {
