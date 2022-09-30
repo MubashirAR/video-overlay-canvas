@@ -30,7 +30,7 @@ export default class VideoOverlayCanvas {
     this.fps = fps;
     this.stopped = true;
 
-    this.sources.forEach(source => {
+    this.sources.forEach((source: VideoSource) => {
       source.videoElement.addEventListener(
         'resize',
         this.handlers.resize(source)
@@ -40,6 +40,8 @@ export default class VideoOverlayCanvas {
 
   private handlers = {
     resize: (source: VideoSource) => () => {
+      if (!source.size.autoScale) return;
+
       source.size = {
         ...source.size,
         height: source.videoElement.videoHeight,
