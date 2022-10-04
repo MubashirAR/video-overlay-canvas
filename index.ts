@@ -20,7 +20,7 @@ export default class VideoOverlayCanvas {
   private outputOptions: VideoOutputOptions;
   private stopped: boolean;
   private fps?: number;
-  private interval?: number;
+  private interval?: any;
 
   constructor({ sources, output, fps }: UserOptions) {
     this.sources = sources;
@@ -46,9 +46,9 @@ export default class VideoOverlayCanvas {
         ...source.size,
         height: source.videoElement.videoHeight,
         width: source.videoElement.videoWidth
-      }
+      };
     }
-  }
+  };
 
   private renderFrame = () => {
     if (this.stopped) {
