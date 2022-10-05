@@ -1,6 +1,6 @@
 {
   "name": "video-overlay-canvas",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Combine multiple video streams as overlay",
   "main": "dist/index.js",
   "scripts": {
