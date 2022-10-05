@@ -122,10 +122,11 @@ export default class VideoOverlayCanvas {
 
   stop() {
     this.stopped = true;
-    this.canvas
-      ?.captureStream()
-      .getTracks()
-      .forEach((track: MediaStreamTrack) => track.stop());
+    const stream = this.canvas?.captureStream();
+    stream?.getTracks().forEach((track: MediaStreamTrack) => {
+      track.stop();
+      stream.removeTrack(track);
+    });
   }
 }
 // TODO: Add support for MediaStreams
